@@ -1,0 +1,118 @@
+/* ========================= */
+/* TABS (Männer / Frauen) */
+/* ========================= */
+
+.tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+/* Basis Button */
+.tabs button {
+  flex: 1;
+  padding: 14px;
+  font-size: 15px;
+  font-weight: 500;
+
+  border-radius: 12px;
+  border: 1px solid #ddd;
+
+  background: white;
+  color: #333;
+
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+/* Hover Effekt */
+.tabs button:hover {
+  border-color: black;
+  background: #f9f9f9;
+}
+
+/* Aktiver Tab */
+.active-tab {
+  background: black;
+  color: white;
+  border: none;
+}
+
+.back-button {
+  margin-bottom: 15px;
+
+  background: none;
+  border: none;
+
+  font-size: 14px;
+  color: #555;
+
+  cursor: pointer;
+}
+
+.back-button:hover {
+  color: black;
+}
+/* ========================= */
+/* SERVICES LISTE */
+/* ========================= */
+
+.services {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+
+/* ========================= */
+/* SERVICE CARD */
+/* ========================= */
+
+.service-card {
+  padding: 18px;
+  border-radius: 12px;
+
+  background: white;
+  border: 1px solid #eee;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+/* Hover Effekt */
+.service-card:hover {
+  border-color: black;
+  transform: translateY(-2px);
+}
+
+/* HEADER (Name + Preis) */
+.service-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  font-size: 17px;
+}
+
+/* Dauer Text */
+.service-card p {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #666;
+}
+
+
+/* ========================= */
+/* AKTIVER SERVICE */
+/* ========================= */
+
+.service-card.active {
+  background: black;
+  color: white;
+  border-color: black;
+}
+
+/* Text im aktiven Zustand */
+.service-card.active p {
+  color: #ccc;
+}

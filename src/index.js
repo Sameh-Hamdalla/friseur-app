@@ -6,7 +6,7 @@ import ReactDOM from "react-dom/client";
 
 // Deine Hauptkomponente importieren
 import App from "./App";
-
+import "./styles/global.css";
 // Das HTML-Element mit der ID "root" holen und einen React-Root erstellen
 const root = ReactDOM.createRoot(document.getElementById("root"));
 

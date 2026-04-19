@@ -1,184 +1,61 @@
-import React, { useState } from "react"; // React + Hook zum Speichern von Daten
-import Calendar from "react-calendar"; // Kalender-Komponente
-import "react-calendar/dist/Calendar.css"; // Standard-Styling vom Kalender
+// Import von React und useState Hook für State-Management
+import React, { useState } from "react";
 
-/**
- * Hauptkomponente der Friseur-App.
- * Enthält Kalender, Eingabefelder und Terminbuchung.
- */
+// Import der einzelnen Steps (Komponenten)
+import Step1Calendar from "./components/Step1Calendar";
+import Step2Services from "./components/Step2Services";
+import Step3Cart from "./components/Step3Cart";
+
+// Globales CSS
+import "./styles/global.css";
+
 function App() {
-  // useState erzeugt:
-  // 1. den aktuellen Wert (date)
-  // 2. eine Funktion zum Ändern (setDate)
-  const [date, setDate] = useState(new Date());
-  // date = aktuelles Datum
-  // setDate(...) = Funktion um das Datum zu ändern
+  // State für aktuellen Schritt (1 = Kalender, 2 = Services, 3 = Warenkorb)
+  const [step, setStep] = useState(1);
 
-  // State für den Namen
-  const [name, setName] = useState("");
-  // name = aktueller Text im Input
-  // setName(...) = speichert neuen Namen
+  // State für ausgewähltes Datum
+  const [date, setDate] = useState(null);
 
-  // State für Telefonnummer
-  const [phone, setPhone] = useState("");
-  // phone = aktueller Wert
-  // setPhone(...) = aktualisiert ihn
+  // State für Kategorie (Standard: Männer)
+  const [category, setCategory] = useState("men");
 
-  // State für Wunsch (Textarea)
-  const [wish, setWish] = useState("");
-  // wish = aktueller Text
-  // setWish(...) = speichert neuen Text
-
-  const [time, setTime] = useState("10:00");
-  // time = aktueller Wert
-  // setTime(...) = aktualisiert ihn
-
-  /**
-   * Generiert eine Liste von Uhrzeiten (Timeslots) für die Terminbuchung.
-   *
-   * Ablauf:
-   * - Startet bei 10:00 Uhr
-   * - Endet bei 17:30 Uhr (letzte generierte Zeit ist 17:30)
-   * - Erstellt alle 30 Minuten einen neuen Timeslot
-   *
-   * Beispiel-Ausgabe:
-   * ["10:00", "10:30", "11:00", ..., "17:30"]
-   *
-   * Rückgabewert:
-   * - Array mit Strings im Format "HH:MM"
-   */
-  const generateTimeSlots = () => {
-    // Array, in dem alle Uhrzeiten gespeichert werden
-    const slots = [];
-
-    /**
-     * Äußere Schleife:
-     * - läuft durch die Stunden (10 bis 17)
-     * - hour = aktuelle Stunde
-     */
-    for (let hour = 10; hour < 18; hour++) {
-      /**
-       * Innere Schleife:
-       * - erzeugt Minuten in 30er-Schritten (0 und 30)
-       * - min = aktuelle Minute
-       */
-      for (let min = 0; min < 60; min += 30) {
-        /**
-         * Formatierung der Uhrzeit:
-         * - padStart(2, "0") sorgt dafür, dass immer 2 Stellen angezeigt werden
-         *   z. B. "9" → "09"
-         */
-        const time =
-          `${hour.toString().padStart(2, "0")}:` +
-          `${min.toString().padStart(2, "0")}`;
-
-        // Fügt die formatierte Uhrzeit dem Array hinzu
-        slots.push(time);
-      }
-    }
-
-    // Gibt alle generierten Timeslots zurück
-    return slots;
-  };
-
-  /**
-   * Wird ausgelöst beim Klick auf "Termin buchen"
-   */
-  const handleBooking = () => {
-    // !name bedeutet: Name ist leer
-    // || bedeutet: ODER
-    // → wenn Name ODER Telefon fehlt → Fehler
-    if (!name || !phone) {
-      alert("Bitte Name und Telefonnummer eingeben");
-      return;
-    }
-
-    // zeigt aktuell nur eine Bestätigung
-    alert(`Termin gebucht am ${date.toLocaleDateString()} für ${name}`);
-  };
+  // State für ausgewählten Service (anfangs keiner gewählt)
+  const [service, setService] = useState(null);
 
   return (
-    <div>
-      <h1>Friseur Termin buchen</h1>
+    <div className="app">
+      <div className="card">
+        {/* STEP 1: Kalender */}
+        {step === 1 && (
+          <Step1Calendar
+            date={date} // aktuelles Datum
+            setDate={setDate} // Funktion zum Ändern des Datums
+            setStep={setStep} // Funktion zum Wechseln des Steps
+          />
+        )}
 
-      {/* 
-        Kalender:
-        - value={date} → zeigt aktuelles Datum
-        - onChange={setDate} → wird ausgelöst wenn User ein Datum klickt
-        → setDate(neuesDatum) speichert es im State
-      */}
-      <Calendar
-        onChange={setDate}
-        value={date}
-        // tileDisabled:
-        // Funktion, die bestimmt, welche Tage im Kalender deaktiviert sind
-        // Hier: Alle Sonntage (getDay() === 0) werden deaktiviert
-        tileDisabled={({ date }) => date.getDay() === 0 || date.getDay() === 1}
-      />
+        {/* STEP 2: Service-Auswahl */}
+        {step === 2 && (
+          <Step2Services
+            category={category} // aktuelle Kategorie (men/women)
+            setCategory={setCategory} // Kategorie ändern
+            service={service} // aktuell gewählter Service
+            setService={setService} // Service auswählen
+            setStep={setStep} // Step wechseln
+          />
+        )}
 
-      {/* zeigt das aktuell gespeicherte Datum */}
-      <p>Gewähltes Datum: {date.toLocaleDateString()}</p>
-
-      <select value={time} onChange={(e) => setTime(e.target.value)}>
-        <option value="">Uhrzeit wählen</option>
-
-        {generateTimeSlots().map((slot) => (
-          <option key={slot} value={slot}>
-            {slot}
-          </option>
-        ))}
-      </select>
-
-      {/* Eingabe Name */}
-      <input
-        type="text"
-        placeholder="Dein Name"
-        // value={name}:
-        // Das Input-Feld zeigt immer den aktuellen State-Wert
-        value={name}
-        // onChange:
-        // wird ausgelöst, wenn User tippt
-        onChange={(e) => {
-          // e = Event-Objekt
-          // e.target.value = aktueller Text im Feld
-          setName(e.target.value); // speichert den neuen Wert
-        }}
-      />
-
-      {/* Eingabe Telefonnummer */}
-      <input
-        type="tel"
-        placeholder="Telefonnummer"
-        value={phone}
-        onChange={(e) => {
-          // speichert jede Eingabe im State
-          setPhone(e.target.value);
-        }}
-      />
-
-      {/* Eingabe Wunsch */}
-      <textarea
-        placeholder="Dein Wunsch (z.B. Haarschnitt, Farbe)"
-        // zeigt aktuellen gespeicherten Text
-        value={wish}
-        // reagiert auf jede Änderung (Tippen)
-        onChange={(e) => {
-          // speichert neuen Text in wish
-          setWish(e.target.value);
-        }}
-      />
-
-      {/* Button zur Terminbuchung */}
-      <button
-        onClick={handleBooking}
-        // onClick:
-        // wird ausgelöst, wenn User klickt
-        // → führt handleBooking() aus
-      >
-        Termin buchen
-      </button>
+        {/* STEP 3: Warenkorb / Übersicht */}
+        {step === 3 && (
+          <Step3Cart
+            service={service} // ausgewählter Service
+            setStep={setStep} // Step wechseln
+          />
+        )}
+      </div>
     </div>
   );
 }
 
+// Export der Hauptkomponente
 export default App;

@@ -1,0 +1,68 @@
+/* Grundlayout der Seite */
+body {
+  margin: 0; /* entfernt Standard-Abstand vom Browser */
+  font-family: "Helvetica Neue", Arial, sans-serif; /* Schriftart */
+  background: #f4f1ec; /* heller Hintergrund */
+  color: #222; /* dunkle Schriftfarbe */
+}
+
+/* Hauptcontainer der App */
+.app {
+  display: flex; /* Flexbox aktivieren */
+  justify-content: center; /* Inhalt horizontal zentrieren */
+  padding: 60px 20px; /* Abstand oben/unten und seitlich */
+}
+
+/* Karte (Hauptbox für Inhalt) */
+.card {
+  width: 100%; /* volle Breite */
+  max-width: 650px; /* maximale Breite */
+  background: #ffffff; /* weißer Hintergrund */
+  padding: 35px; /* Innenabstand */
+  border-radius: 16px; /* abgerundete Ecken */
+}
+
+/* Überschrift */
+.title {
+  text-align: center; /* zentrierter Text */
+  font-size: 28px; /* größere Schrift */
+  margin-bottom: 25px; /* Abstand nach unten */
+}
+
+/* BUTTON (wichtig für Navigation zwischen Steps) */
+.button {
+  width: 100%; /* volle Breite */
+  padding: 14px; /* Innenabstand */
+  margin-top: 10px; /* Abstand nach oben */
+
+  font-size: 16px;
+  font-weight: bold;
+
+  background: #000; /* schwarzer Hintergrund */
+  color: white; /* weiße Schrift */
+  border: none; /* kein Rahmen */
+  border-radius: 10px; /* abgerundete Ecken */
+
+  cursor: pointer; /* Maus wird zur Hand */
+}
+
+/* Kalender-Komponente (react-calendar) */
+.react-calendar {
+  width: 100%; /* volle Breite */
+  border-radius: 12px; /* abgerundete Ecken */
+  border: 1px solid #eee; /* leichter Rahmen */
+  padding: 10px; /* Innenabstand */
+}
+
+.button:hover {
+  opacity: 0.85;
+}
+
+.button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.card {
+  box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+}
