@@ -8,6 +8,7 @@ import Step3Cart from "./components/Step3Cart";
 
 // Globales CSS
 import "./styles/global.css";
+import Step3Time from "./components/Step3Cart";
 
 function App() {
   // State für aktuellen Schritt (1 = Kalender, 2 = Services, 3 = Warenkorb)
@@ -21,6 +22,8 @@ function App() {
 
   // State für ausgewählten Service (anfangs keiner gewählt)
   const [service, setService] = useState(null);
+
+  const [time, setTime] = useState(null);
 
   return (
     <div className="app">
@@ -47,11 +50,14 @@ function App() {
 
         {/* STEP 3: Warenkorb / Übersicht */}
         {step === 3 && (
-          <Step3Cart
-            service={service} // ausgewählter Service
+          <Step3Time
+            time={time}
+            setTime={setTime} // Uhrzeit ändern
             setStep={setStep} // Step wechseln
           />
         )}
+
+        {step === 4 && <Step3Cart service={service} setStep={setStep} />}
       </div>
     </div>
   );

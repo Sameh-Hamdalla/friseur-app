@@ -63,7 +63,7 @@ function Step2Services({
       {/* Button zum nächsten Schritt */}
       <button
         className="button"
-        onClick={() => setStep(3)} // wechselt zu Schritt 3
+        onClick={() => setStep(4)} // wechselt zu Schritt 3
         disabled={!service} // deaktiviert, solange kein Service ausgewählt ist
       >
         Weiter
