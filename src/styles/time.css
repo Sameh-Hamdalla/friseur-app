@@ -1,0 +1,22 @@
+/* Grid für Zeit-Auswahl */
+.time-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+/* Zeit-Buttons */
+.time-grid button {
+  padding: 12px;
+  border: 1px solid #ddd;
+  background: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* Aktive Zeit */
+.active-time {
+  background: blueviolet;
+  color: green;
+}

@@ -1,9 +1,128 @@
-.cart {
-  margin: 20px 0;
+/* =========================
+   CONTAINER (Warenkorb Box)
+   ========================= */
+.cart-box {
+  border: 1px solid #eee;
+  padding: 24px; /* etwas mehr Luft */
+  border-radius: 14px;
+
+  /* moderner Look */
+  background: #fff;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.04);
 }
 
+/* =========================
+   SERVICE HEADER (Name + Preis)
+   ========================= */
 .cart-item {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+
+  font-weight: bold;
   font-size: 18px;
+
+  margin-bottom: 15px;
+}
+
+/* =========================
+   TRENNLINIE
+   ========================= */
+.divider {
+  height: 1px;
+  background: #eee;
+  margin: 18px 0;
+}
+
+/* =========================
+   ZEILEN (Preis, Dauer etc.)
+   ========================= */
+.cart-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 12px;
+  font-size: 15px;
+}
+
+/* Linke Seite (Labels) */
+.cart-row span:first-child {
+  color: #777;
+}
+
+/* Rechte Seite (Werte) */
+.cart-row span:last-child {
+  font-weight: 500;
+}
+
+/* =========================
+   BUTTON (Hauptaktion)
+   ========================= */
+.primary-button {
+  width: 100%;
+  padding: 14px;
+  margin-top: 20px;
+
+  font-size: 16px;
+  font-weight: bold;
+
+  background: blueviolet;
+  color: white;
+
+  border: none;
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  /* smoother Effekt */
+  transition: all 0.2s ease;
+}
+
+/* Hover Effekt */
+.primary-button:hover {
+  opacity: 0.85;
+}
+
+/* Klick Effekt */
+.primary-button:active {
+  transform: scale(0.98);
+}
+
+/* =========================
+   HINWEIS TEXT
+   ========================= */
+.cart-note {
+  font-size: 12px;
+  color: #888;
+  margin-top: 12px;
+}
+
+/* =========================
+   BESTÄTIGUNGSTEXT
+   ========================= */
+.confirmation-text {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+/* =========================
+   ZURÜCK BUTTON
+   ========================= */
+.back-button {
+  margin-top: 15px;
+
+  background: none;
+  border: none;
+
+  color: #555;
+  font-size: 14px;
+
+  cursor: pointer;
+}
+
+/* Hover Effekt */
+.back-button:hover {
+  text-decoration: underline;
 }

@@ -1,68 +1,82 @@
-/* Grundlayout der Seite */
+/* Grundlayout der ganzen App */
 body {
-  margin: 0; /* entfernt Standard-Abstand vom Browser */
-  font-family: "Helvetica Neue", Arial, sans-serif; /* Schriftart */
-  background: #f4f1ec; /* heller Hintergrund */
-  color: #222; /* dunkle Schriftfarbe */
+  margin: 0;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  background: #f4f1ec;
+  color: #222;
 }
 
-/* Hauptcontainer der App */
+/* Zentrierung der App */
 .app {
-  display: flex; /* Flexbox aktivieren */
-  justify-content: center; /* Inhalt horizontal zentrieren */
-  padding: 60px 20px; /* Abstand oben/unten und seitlich */
+  display: flex;
+  justify-content: center;
+  padding: 60px 20px;
 }
 
-/* Karte (Hauptbox für Inhalt) */
+/* Hauptkarte */
 .card {
-  width: 100%; /* volle Breite */
-  max-width: 650px; /* maximale Breite */
-  background: #ffffff; /* weißer Hintergrund */
-  padding: 35px; /* Innenabstand */
-  border-radius: 16px; /* abgerundete Ecken */
+  width: 100%;
+  max-width: 650px;
+  background: #ffffff;
+  padding: 35px;
+  border-radius: 16px;
+
+  /* leichter Schatten für modernes UI */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
 
 /* Überschrift */
 .title {
-  text-align: center; /* zentrierter Text */
-  font-size: 28px; /* größere Schrift */
-  margin-bottom: 25px; /* Abstand nach unten */
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 25px;
 }
 
-/* BUTTON (wichtig für Navigation zwischen Steps) */
+/* Standard Button */
 .button {
-  width: 100%; /* volle Breite */
-  padding: 14px; /* Innenabstand */
-  margin-top: 10px; /* Abstand nach oben */
+  width: 100%;
+  padding: 14px;
+  margin-top: 10px;
 
   font-size: 16px;
   font-weight: bold;
 
-  background: #000; /* schwarzer Hintergrund */
-  color: white; /* weiße Schrift */
-  border: none; /* kein Rahmen */
-  border-radius: 10px; /* abgerundete Ecken */
+  background:blueviolet;
+  color: white;
+  border: none;
+  border-radius: 10px;
 
-  cursor: pointer; /* Maus wird zur Hand */
+  cursor: pointer;
 }
 
-/* Kalender-Komponente (react-calendar) */
-.react-calendar {
-  width: 100%; /* volle Breite */
-  border-radius: 12px; /* abgerundete Ecken */
-  border: 1px solid #eee; /* leichter Rahmen */
-  padding: 10px; /* Innenabstand */
-}
-
+/* Hover Effekt */
 .button:hover {
   opacity: 0.85;
 }
 
+/* Disabled Zustand */
 .button:disabled {
   background: #ccc;
   cursor: not-allowed;
 }
+.react-calendar {
+  width: 100%;           /* volle Breite der Card */
+  max-width: 500px;      /* optional Begrenzung */
+  margin: 0 auto;        /* zentrieren */
 
-.card {
-  box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+  border-radius: 12px;
+  border: 1px solid #eee;
+  padding: 10px;
+}
+.back-button {
+  background: none;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+.back-button:hover {
+  text-decoration: underline;
 }

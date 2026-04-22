@@ -1,67 +1,96 @@
-// Import von React und useState Hook für State-Management
+// Import von React und dem Hook useState
+// useState wird verwendet, um Werte im State zu speichern,
+// die sich während der Nutzung der App ändern.
 import React, { useState } from "react";
 
-// Import der einzelnen Steps (Komponenten)
+// Import der einzelnen Schritt-Komponenten
 import Step1Calendar from "./components/Step1Calendar";
 import Step2Services from "./components/Step2Services";
-import Step3Cart from "./components/Step3Cart";
+import Step3Time from "./components/Step3Time";
+import Step4Cart from "./components/Step4Cart";
+import Step5Confirmation from "./components/Step5Confirmation";
 
-// Globales CSS
+// Import des globalen CSS
 import "./styles/global.css";
-import Step3Time from "./components/Step3Cart";
 
+// Hauptkomponente der App
 function App() {
-  // State für aktuellen Schritt (1 = Kalender, 2 = Services, 3 = Warenkorb)
+  // State für den aktuellen Schritt
+  // 1 = Datum wählen
+  // 2 = Service wählen
+  // 3 = Uhrzeit wählen
+  // 4 = Warenkorb / Übersicht
+  // 5 = Bestätigung
   const [step, setStep] = useState(1);
 
-  // State für ausgewähltes Datum
-  const [date, setDate] = useState(null);
+  // State für das gewählte Datum
+  // Standardmäßig wird das heutige Datum gesetzt
+  const [date, setDate] = useState(new Date());
 
-  // State für Kategorie (Standard: Männer)
+  // State für die Kategorie der Services
+  // Standardwert ist "men"
   const [category, setCategory] = useState("men");
 
-  // State für ausgewählten Service (anfangs keiner gewählt)
+  // State für den aktuell ausgewählten Service
+  // Anfangs ist noch kein Service gewählt
   const [service, setService] = useState(null);
 
+  // State für die gewählte Uhrzeit
+  // Anfangs ist noch keine Uhrzeit gewählt
   const [time, setTime] = useState(null);
 
   return (
     <div className="app">
+      {/* 
+        Zentrale Karte / Box der App
+        Hier wird je nach aktuellem Step eine andere Komponente angezeigt
+      */}
       <div className="card">
-        {/* STEP 1: Kalender */}
+        {/* Schritt 1: Kalender */}
         {step === 1 && (
-          <Step1Calendar
-            date={date} // aktuelles Datum
-            setDate={setDate} // Funktion zum Ändern des Datums
-            setStep={setStep} // Funktion zum Wechseln des Steps
-          />
+          <Step1Calendar date={date} setDate={setDate} setStep={setStep} />
         )}
 
-        {/* STEP 2: Service-Auswahl */}
+        {/* Schritt 2: Service-Auswahl */}
         {step === 2 && (
           <Step2Services
-            category={category} // aktuelle Kategorie (men/women)
-            setCategory={setCategory} // Kategorie ändern
-            service={service} // aktuell gewählter Service
-            setService={setService} // Service auswählen
-            setStep={setStep} // Step wechseln
+            category={category}
+            setCategory={setCategory}
+            service={service}
+            setService={setService}
+            setStep={setStep}
           />
         )}
 
-        {/* STEP 3: Warenkorb / Übersicht */}
+        {/* Schritt 3: Uhrzeit wählen */}
         {step === 3 && (
-          <Step3Time
+          <Step3Time time={time} setTime={setTime} setStep={setStep} />
+        )}
+
+        {/* Schritt 4: Warenkorb / Übersicht */}
+        {step === 4 && (
+          <Step4Cart
+            service={service}
             time={time}
-            setTime={setTime} // Uhrzeit ändern
-            setStep={setStep} // Step wechseln
+            date={date}
+            setStep={setStep}
           />
         )}
 
-        {step === 4 && <Step3Cart service={service} setStep={setStep} />}
+        {/* Schritt 5: Bestätigung */}
+        {step === 5 && (
+          <Step5Confirmation
+            service={service}
+            date={date}
+            time={time}
+            setStep={setStep}
+          />
+        )}
       </div>
     </div>
   );
 }
 
-// Export der Hauptkomponente
+// Export der Hauptkomponente,
+// damit sie in index.js oder main.jsx gerendert werden kann
 export default App;

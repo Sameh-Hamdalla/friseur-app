@@ -1,45 +1,47 @@
-// Import der Kalender-Komponente aus der Bibliothek react-calendar
+// Import der Kalender-Komponente aus der Bibliothek "react-calendar"
 import Calendar from "react-calendar";
 
-// Import der Standard-CSS-Styles für den Kalender
+// Import der Standard-Styles von react-calendar
 import "react-calendar/dist/Calendar.css";
 
-// Funktionale React-Komponente für Schritt 1 (Datum auswählen)
-function Step1Calendar({ date, setDate, setStep }) {
+// Schritt 1:
+// In dieser Komponente wählt der Nutzer ein Datum aus.
+export default function Step1Calendar({ date, setDate, setStep }) {
   return (
     <>
-      {/* Überschrift */}
+      {/* Überschrift des ersten Schritts */}
       <h1 className="title">Termin wählen</h1>
 
-      {/* Kalender-Komponente */}
+      {/* 
+        Kalender-Komponente
+        - value: aktuell ausgewähltes Datum
+        - onChange: wird aufgerufen, sobald der Nutzer ein neues Datum anklickt
+        - tileDisabled: deaktiviert bestimmte Tage
+      */}
       <Calendar
-        className="calendar" // CSS-Klasse für Styling
-        value={date} // aktuell ausgewähltes Datum
-        onChange={setDate} // Funktion wird aufgerufen, wenn Nutzer Datum ändert
+        className="calendar"
+        value={date}
+        onChange={setDate}
         tileDisabled={({ date }) =>
-          // Deaktiviert bestimmte Tage im Kalender:
-          // getDay(): 0 = Sonntag, 1 = Montag
-          // → Sonntag und Montag sind nicht auswählbar
+          // 0 = Sonntag, 1 = Montag
+          // Diese beiden Wochentage sind hier deaktiviert
           date.getDay() === 0 || date.getDay() === 1
         }
       />
 
-      {/* Anzeige des gewählten Datums */}
-      <p>Gewähltes Datum: {" "}
-        {date ? date.toLocaleDateString() : "Bitte Datum auswählen"}</p>
+      {/* Anzeige des aktuell gewählten Datums */}
+      <p>
+        Gewähltes Datum:{" "}
+        {date ? date.toLocaleDateString() : "Kein Datum ausgewählt"}
+      </p>
 
-      {/* Button zum nächsten Schritt */}
-      <button
-        className="button"
-        onClick={() => setStep(2)} // wechselt zu Schritt 2 (Service-Auswahl)
-        disabled={!date} // Button ist deaktiviert, wenn kein Datum ausgewählt ist
-      >
+      {/* 
+        Button für den nächsten Schritt
+        Beim Klick wird step auf 2 gesetzt → Service-Auswahl
+      */}
+      <button className="button" onClick={() => setStep(2)}>
         Weiter zur Service-Auswahl
       </button>
-      
     </>
   );
 }
-
-// Export der Komponente, damit sie in anderen Dateien verwendet werden kann
-export default Step1Calendar;

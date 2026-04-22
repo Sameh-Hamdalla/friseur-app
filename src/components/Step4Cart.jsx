@@ -1,52 +1,65 @@
-// React-Komponente für Schritt 3 (Warenkorb / Übersicht)
-export default function Step3Cart({ service, setStep }) {
+// Schritt 4:
+// In dieser Komponente sieht der Nutzer eine Übersicht
+// über den gewählten Service, das Datum und die Uhrzeit.
+import "../styles/cart.css";
+export default function Step4Cart({ service, time, date, setStep }) {
   return (
     <>
       {/* Überschrift */}
       <h1 className="title">Warenkorb</h1>
 
-      {/* Container für den Warenkorb */}
+      {/* Hauptbox für die Zusammenfassung */}
       <div className="cart-box">
-        {/* Service (Name + Preis) */}
+        {/* Ausgewählter Service */}
         <div className="cart-item">
-          <span>{service?.name}</span> {/* Name des gewählten Services */}
-          <span>{service?.price} €</span> {/* Preis */}
+          <span>{service?.name}</span>
+          <span>{service?.price} €</span>
         </div>
 
-        {/* Trennlinie für visuelle Struktur */}
+        {/* Trennlinie für bessere Übersicht */}
         <div className="divider" />
 
-        {/* Preis-Information */}
+        {/* Preis */}
         <div className="cart-row">
           <span>Preis</span>
           <span>ca. {service?.price || 0} €</span>
-          {/* Fallback auf 0€, falls kein Service gewählt */}
         </div>
 
-        {/* Dauer des Services */}
+        {/* Dauer */}
         <div className="cart-row">
           <span>Dauer</span>
           <span>{service?.duration || 0} min</span>
         </div>
 
-        {/* Hinweis auf Termin (kommt im nächsten Schritt) */}
+        {/* Datum */}
         <div className="cart-row">
-          <span>Termin</span>
-          <span>im nächsten Schritt</span>
+          <span>Datum</span>
+          <span>{date ? date.toLocaleDateString() : "-"}</span>
         </div>
 
-        {/* Button zum finalen Buchungsschritt */}
+        {/* Uhrzeit */}
+        <div className="cart-row">
+          <span>Uhrzeit</span>
+          <span>{time || "-"}</span>
+        </div>
+
+        {/* 
+          Button zur finalen Bestätigung
+          Danach geht es zu Schritt 5 = Bestätigungsseite
+        */}
         <button
           className="primary-button"
-          onClick={() => setStep(4)} // wechselt zu Schritt 4 (Termin buchen)
+          onClick={() => setStep(5)}
         >
           Termin buchen
         </button>
 
-        {/* Hinweistext */}
+        {/* Hinweis */}
         <p className="cart-note">
           *Preis kann je nach Aufwand variieren.
         </p>
+        {/* Zurück zu Step 3 */}
+          <button className="back-button"onClick={() => setStep(3)}>← Zurück</button>
       </div>
     </>
   );
