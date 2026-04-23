@@ -1,0 +1,58 @@
+/* ═══════════════════════════════════════════════
+   FOOTER
+   Dezenter, eleganter Abschluss
+═══════════════════════════════════════════════ */
+
+.footer {
+  width: 100%;
+  padding: 20px 40px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+
+  background: var(--card);
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.footer p {
+  margin: 0;
+}
+
+/* ── Footer Links ── */
+.footer-links {
+  display: flex;
+  gap: 8px;
+}
+
+.footer-link {
+  background: none;
+  border: none;
+  padding: 4px 10px;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: var(--radius-sm);
+  transition: color var(--transition-fast), background var(--transition-fast);
+}
+
+.footer-link:hover {
+  color: var(--primary-dark);
+  background: var(--bg-warm);
+  text-decoration: none;
+}
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .footer {
+    padding: 16px 20px;
+    flex-direction: column;
+    text-align: center;
+  }
+}
+

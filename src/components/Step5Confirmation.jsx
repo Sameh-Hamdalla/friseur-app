@@ -1,6 +1,12 @@
 // Schritt 5:
 // Finale Bestätigungsseite nach erfolgreicher Buchung
-export default function Step5Confirmation({ service, date, time, setStep }) {
+export default function Step5Confirmation({
+  service,
+  date,
+  time,
+  customer,
+  setStep,
+}) {
   return (
     <>
       {/* Überschrift */}
@@ -8,7 +14,11 @@ export default function Step5Confirmation({ service, date, time, setStep }) {
 
       {/* Kurzer Bestätigungstext */}
       <p className="confirmation-text">
-        Vielen Dank für deine Buchung. Dein Termin wurde erfolgreich reserviert.
+        Vielen Dank für deine Buchung,{" "}
+        <strong>
+          {customer?.firstName} {customer?.lastName}
+        </strong>
+        . Dein Termin wurde erfolgreich reserviert.
       </p>
 
       {/* 
@@ -16,7 +26,6 @@ export default function Step5Confirmation({ service, date, time, setStep }) {
         Nutzt das gleiche Layout wie der Warenkorb (wiederverwendbar)
       */}
       <div className="cart-box">
-        
         {/* Service */}
         <div className="cart-row">
           <span>Service</span>
@@ -38,15 +47,33 @@ export default function Step5Confirmation({ service, date, time, setStep }) {
         {/* Datum */}
         <div className="cart-row">
           <span>Datum</span>
-          <span>
-            {date ? date.toLocaleDateString("de-DE") : "-"}
-          </span>
+          <span>{date ? date.toLocaleDateString("de-DE") : "-"}</span>
         </div>
 
         {/* Uhrzeit */}
         <div className="cart-row">
           <span>Uhrzeit</span>
           <span>{time || "-"}</span>
+        </div>
+
+        <div className="divider" />
+
+        {/* Kundendaten */}
+        <div className="cart-row">
+          <span>Name</span>
+          <span>
+            {customer?.firstName} {customer?.lastName}
+          </span>
+        </div>
+
+        <div className="cart-row">
+          <span>E-Mail</span>
+          <span>{customer?.email || "-"}</span>
+        </div>
+
+        <div className="cart-row">
+          <span>Telefon</span>
+          <span>{customer?.phone || "-"}</span>
         </div>
       </div>
 
@@ -57,7 +84,6 @@ export default function Step5Confirmation({ service, date, time, setStep }) {
       <button
         className="primary-button"
         onClick={() => {
-          // Optional: hier könntest du später auch alle States resetten
           setStep(1);
         }}
       >
@@ -66,3 +92,4 @@ export default function Step5Confirmation({ service, date, time, setStep }) {
     </>
   );
 }
+

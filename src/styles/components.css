@@ -1,0 +1,238 @@
+/* ═══════════════════════════════════════════════
+   SHARED UI COMPONENTS
+   Karten, Buttons, Titel, react-calendar
+═══════════════════════════════════════════════ */
+
+/* ── CARD ── */
+.card {
+  width: 100%;
+  max-width: 620px;
+  background: var(--card);
+  padding: 44px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border);
+  margin: 0 auto;
+  transition: box-shadow var(--transition-base), transform var(--transition-base);
+}
+
+.card:hover {
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.12);
+}
+
+@media (max-width: 640px) {
+  .card {
+    padding: 28px 20px;
+    border-radius: var(--radius-md);
+  }
+}
+
+/* ── TITLE ── */
+.title {
+  text-align: center;
+  font-size: clamp(1.5rem, 4vw, 1.85rem);
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: var(--text);
+  margin-top: 0;
+  margin-bottom: 32px;
+  position: relative;
+}
+
+.title::after {
+  content: '';
+  display: block;
+  width: 48px;
+  height: 3px;
+  background: var(--primary);
+  border-radius: 100px;
+  margin: 12px auto 0;
+}
+
+/* ── BUTTONS ── */
+.button,
+.primary-button {
+  width: 100%;
+  padding: 15px 20px;
+  margin-top: 16px;
+
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  text-align: center;
+
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-md);
+
+  cursor: pointer;
+  transition: background var(--transition-fast),
+              transform var(--transition-fast),
+              box-shadow var(--transition-base);
+}
+
+.button:hover,
+.primary-button:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-primary);
+}
+
+.button:active,
+.primary-button:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+.button:disabled,
+.primary-button:disabled {
+  background: #d4d4d4;
+  color: #888;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* ── BACK BUTTON ── */
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  background: none;
+  border: none;
+  padding: 6px 0;
+  margin-top: 18px;
+
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color var(--transition-fast), transform var(--transition-fast);
+}
+
+.back-button:hover {
+  color: var(--text);
+  transform: translateX(-3px);
+}
+
+.back-button::before {
+  content: '←';
+  transition: transform var(--transition-fast);
+}
+
+.back-button:hover::before {
+  transform: translateX(-2px);
+}
+
+/* ═══════════════════════════════════════════════
+   REACT-CALENDAR OVERRIDES
+═══════════════════════════════════════════════ */
+
+.react-calendar {
+  width: 100% !important;
+  max-width: 100%;
+  background: transparent !important;
+  border: none !important;
+  font-family: inherit !important;
+  margin-bottom: 8px;
+}
+
+/* Navigation (Monat/Jahr) */
+.react-calendar__navigation {
+  margin-bottom: 12px;
+}
+
+.react-calendar__navigation button {
+  background: none !important;
+  color: var(--text) !important;
+  font-weight: 600;
+  font-size: 15px;
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+  transition: background var(--transition-fast);
+}
+
+.react-calendar__navigation button:hover {
+  background: var(--bg-warm) !important;
+}
+
+.react-calendar__navigation button:disabled {
+  opacity: 0.35;
+}
+
+/* Wochentage */
+.react-calendar__month-view__weekdays {
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+}
+
+.react-calendar__month-view__weekdays__weekday {
+  padding: 10px 0;
+}
+
+.react-calendar__month-view__weekdays__weekday abbr {
+  text-decoration: none;
+}
+
+/* Einzelne Tage */
+.react-calendar__tile {
+  padding: 14px 6px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+  border-radius: var(--radius-sm);
+  transition: background var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+}
+
+.react-calendar__tile:enabled:hover {
+  background: var(--primary-light) !important;
+  color: var(--text) !important;
+}
+
+.react-calendar__tile--now {
+  background: var(--bg-warm) !important;
+  font-weight: 700;
+}
+
+.react-calendar__tile--active {
+  background: var(--primary) !important;
+  color: #fff !important;
+  font-weight: 700;
+  box-shadow: var(--shadow-primary);
+}
+
+.react-calendar__tile--active:enabled:hover {
+  background: var(--primary-dark) !important;
+}
+
+/* Deaktivierte Tage */
+.react-calendar__tile:disabled {
+  color: #ccc !important;
+  background: transparent !important;
+  cursor: not-allowed;
+}
+
+/* Sonntag / andere Tage außerhalb des Monats */
+.react-calendar__month-view__days__day--neighboringMonth {
+  color: #bbb;
+}
+
+/* ── Datums-Anzeige (Step 1) ── */
+.date-display {
+  text-align: center;
+  margin: 20px 0 8px;
+  font-size: 15px;
+  color: var(--text-secondary);
+}
+
+.date-display strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+

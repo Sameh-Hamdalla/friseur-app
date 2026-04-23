@@ -30,9 +30,9 @@ export default function Step1Calendar({ date, setDate, setStep }) {
       />
 
       {/* Anzeige des aktuell gewählten Datums */}
-      <p>
+      <p className="date-display">
         Gewähltes Datum:{" "}
-        {date ? date.toLocaleDateString() : "Kein Datum ausgewählt"}
+        <strong>{date ? date.toLocaleDateString("de-DE", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) : "Kein Datum ausgewählt"}</strong>
       </p>
 
       {/* 

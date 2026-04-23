@@ -1,82 +1,88 @@
-/* Grundlayout der ganzen App */
+/* ═══════════════════════════════════════════════
+   SALON BOOKING – GLOBAL STYLES
+   Warmes Premium-Design mit CSS-Variablen
+═══════════════════════════════════════════════ */
+
+/* ── CSS Custom Properties ── */
+:root {
+  /* Farbschema: Warmes Gold & Anthrazit */
+  --primary: #c9a96e;
+  --primary-dark: #b08d55;
+  --primary-light: #e3d5b8;
+  --primary-glow: rgba(201, 169, 110, 0.25);
+
+  --bg: #faf8f5;
+  --bg-warm: #f5f0e8;
+  --card: #ffffff;
+  --text: #1a1a1a;
+  --text-secondary: #555555;
+  --text-muted: #888888;
+
+  --border: rgba(0, 0, 0, 0.06);
+  --border-strong: rgba(0, 0, 0, 0.1);
+
+  /* Schatten */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.1);
+  --shadow-primary: 0 8px 25px rgba(201, 169, 110, 0.35);
+
+  /* Abstände */
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+
+  /* Übergänge */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 350ms ease;
+}
+
+/* ── Reset & Base ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 body {
   margin: 0;
-  font-family: "Helvetica Neue", Arial, sans-serif;
-  background: #f4f1ec;
-  color: #222;
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  line-height: 1.6;
 }
 
-/* Zentrierung der App */
-.app {
-  display: flex;
-  justify-content: center;
-  padding: 60px 20px;
+/* ── Textauswahl ── */
+::selection {
+  background: var(--primary-light);
+  color: var(--text);
 }
 
-/* Hauptkarte */
-.card {
-  width: 100%;
-  max-width: 650px;
-  background: #ffffff;
-  padding: 35px;
-  border-radius: 16px;
-
-  /* leichter Schatten für modernes UI */
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+/* ── Scrollbar (WebKit) ── */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--primary-light);
+  border-radius: 100px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
 }
 
-/* Überschrift */
-.title {
-  text-align: center;
-  font-size: 28px;
-  margin-bottom: 25px;
+/* ── Fokus-Ring für Barrierefreiheit ── */
+*:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
 }
 
-/* Standard Button */
-.button {
-  width: 100%;
-  padding: 14px;
-  margin-top: 10px;
-
-  font-size: 16px;
-  font-weight: bold;
-
-  background:blueviolet;
-  color: white;
-  border: none;
-  border-radius: 10px;
-
-  cursor: pointer;
-}
-
-/* Hover Effekt */
-.button:hover {
-  opacity: 0.85;
-}
-
-/* Disabled Zustand */
-.button:disabled {
-  background: #ccc;
-  cursor: not-allowed;
-}
-.react-calendar {
-  width: 100%;           /* volle Breite der Card */
-  max-width: 500px;      /* optional Begrenzung */
-  margin: 0 auto;        /* zentrieren */
-
-  border-radius: 12px;
-  border: 1px solid #eee;
-  padding: 10px;
-}
-.back-button {
-  background: none;
-  border: none;
-  font-size: 14px;
-  cursor: pointer;
-  margin-bottom: 10px;
-  color: #555;
-}
-
-.back-button:hover {
-  text-decoration: underline;
-}

@@ -1,6 +1,6 @@
 // Import der zentralen Service-Daten
 import services from "../data/services";
-
+import "../styles/services.css";
 // Schritt 2:
 // In dieser Komponente wählt der Nutzer zuerst eine Kategorie
 // (Männer / Frauen) und danach einen konkreten Service aus.

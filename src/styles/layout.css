@@ -1,0 +1,28 @@
+/* ═══════════════════════════════════════════════
+   LAYOUT
+   App-Shell & Hauptbereich
+═══════════════════════════════════════════════ */
+
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ── Haupt-Content ── */
+.main-content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 48px 20px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .main-content {
+    padding: 24px 16px;
+    align-items: flex-start;
+  }
+}
+

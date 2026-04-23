@@ -9,6 +9,13 @@ import Step2Services from "./components/Step2Services";
 import Step3Time from "./components/Step3Time";
 import Step4Cart from "./components/Step4Cart";
 import Step5Confirmation from "./components/Step5Confirmation";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+
+import "./styles/navbar.css";
+import "./styles/footer.css";
+import "./styles/layout.css";
+import "./styles/components.css";
 
 // Import des globalen CSS
 import "./styles/global.css";
@@ -39,54 +46,70 @@ function App() {
   // Anfangs ist noch keine Uhrzeit gewählt
   const [time, setTime] = useState(null);
 
+  // State für Kundendaten
+  const [customer, setCustomer] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+  });
+
   return (
     <div className="app">
       {/* 
         Zentrale Karte / Box der App
         Hier wird je nach aktuellem Step eine andere Komponente angezeigt
       */}
-      <div className="card">
-        {/* Schritt 1: Kalender */}
-        {step === 1 && (
-          <Step1Calendar date={date} setDate={setDate} setStep={setStep} />
-        )}
+      <Navbar />
+      <main className="main-content">
+        <div className="card">
+          {/* Schritt 1: Kalender */}
+          {step === 1 && (
+            <Step1Calendar date={date} setDate={setDate} setStep={setStep} />
+          )}
 
-        {/* Schritt 2: Service-Auswahl */}
-        {step === 2 && (
-          <Step2Services
-            category={category}
-            setCategory={setCategory}
-            service={service}
-            setService={setService}
-            setStep={setStep}
-          />
-        )}
+          {/* Schritt 2: Service-Auswahl */}
+          {step === 2 && (
+            <Step2Services
+              category={category}
+              setCategory={setCategory}
+              service={service}
+              setService={setService}
+              setStep={setStep}
+            />
+          )}
 
-        {/* Schritt 3: Uhrzeit wählen */}
-        {step === 3 && (
-          <Step3Time time={time} setTime={setTime} setStep={setStep} />
-        )}
+          {/* Schritt 3: Uhrzeit wählen */}
+          {step === 3 && (
+            <Step3Time time={time} setTime={setTime} setStep={setStep} />
+          )}
 
-        {/* Schritt 4: Warenkorb / Übersicht */}
-        {step === 4 && (
-          <Step4Cart
-            service={service}
-            time={time}
-            date={date}
-            setStep={setStep}
-          />
-        )}
+          {/* Schritt 4: Warenkorb / Übersicht */}
+          {step === 4 && (
+            <Step4Cart
+              service={service}
+              time={time}
+              date={date}
+              customer={customer}
+              setCustomer={setCustomer}
+              setStep={setStep}
+            />
+          )}
 
-        {/* Schritt 5: Bestätigung */}
-        {step === 5 && (
-          <Step5Confirmation
-            service={service}
-            date={date}
-            time={time}
-            setStep={setStep}
-          />
-        )}
-      </div>
+          {/* Schritt 5: Bestätigung */}
+          {step === 5 && (
+            <Step5Confirmation
+              service={service}
+              date={date}
+              time={time}
+              customer={customer}
+              setStep={setStep}
+            />
+          )}
+        </div>
+      </main>
+
+      <Footer />
     </div>
   );
 }

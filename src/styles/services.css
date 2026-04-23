@@ -1,46 +1,115 @@
-/* Tabs (Männer / Frauen) */
+/* ═══════════════════════════════════════════════
+   SERVICES
+   Tabs & Service-Karten
+═══════════════════════════════════════════════ */
+
+/* ── Tabs (Männer / Frauen) ── */
 .tabs {
   display: flex;
-  gap: 10px;
-  margin-bottom: 15px;
+  gap: 8px;
+  margin-bottom: 24px;
+  padding: 4px;
+  background: var(--bg-warm);
+  border-radius: var(--radius-xl);
 }
 
 .tabs button {
   flex: 1;
-  padding: 10px;
-  border: 1px solid #ddd;
-  background: white;
+  padding: 12px 16px;
+  border: none;
+  background: transparent;
   cursor: pointer;
-  border-radius: 8px;
+  border-radius: var(--radius-xl);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  transition: background var(--transition-fast), color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.tabs button:hover:not(.active-tab) {
+  background: rgba(255, 255, 255, 0.6);
+  color: var(--text);
 }
 
 /* Aktiver Tab */
 .active-tab {
-  background: black;
-  color: blue;
+  background: var(--card) !important;
+  color: var(--text) !important;
+  box-shadow: var(--shadow-sm);
 }
 
-/* Service Liste */
+/* ── Service Liste ── */
 .services {
-  margin-bottom: 20px;
+  margin-bottom: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-/* Einzelne Service-Karte */
+/* ── Einzelne Service-Karte ── */
 .service-card {
   cursor: pointer;
-  padding: 12px;
-  border-bottom: 1px solid #eee;
+  padding: 18px 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--card);
+  transition: border-color var(--transition-fast), background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.service-card:hover {
+  border-color: var(--primary-light);
+  background: #fdfbf7;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
 }
 
 /* Header (Name + Preis) */
 .service-header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.service-header strong {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.service-header span {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+/* Dauer */
+.service-card > p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-muted);
+  font-weight: 500;
 }
 
 /* Ausgewählter Service */
 .service-card.active {
-  background: green;
-  color: white;
-  border-radius: 8px;
+  background: var(--primary) !important;
+  border-color: var(--primary) !important;
+  color: #fff !important;
+  box-shadow: var(--shadow-primary);
+  transform: translateY(-1px);
 }
+
+.service-card.active .service-header strong,
+.service-card.active .service-header span,
+.service-card.active > p {
+  color: #fff !important;
+}
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .service-card {
+    padding: 14px 16px;
+  }
+}
+
